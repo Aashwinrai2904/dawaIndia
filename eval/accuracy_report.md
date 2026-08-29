@@ -1,19 +1,19 @@
 # dawaIndia — Accuracy Report
 
-Generated: 2026-08-29 17:02:27 UTC
+Generated: 2026-08-29 17:27:08 UTC
 Test cases evaluated: 1
 
 ## Summary
 
 | Stage | Threshold | Avg Score | Status | Run | Skipped | Errored |
 |---|---|---|---|---|---|---|
-| Layout detection | 98% | — | SKIPPED | 0 | 1 | 0 |
+| Layout detection | 98% | 100.0% | PASS | 1 | 0 | 0 |
 | OCR accuracy | 95% | — | SKIPPED | 0 | 1 | 0 |
 | Dosage parsing | 92% | — | SKIPPED | 0 | 1 | 0 |
 | Drug matching | 88% | — | SKIPPED | 0 | 1 | 0 |
 | Confidence scoring | 90% | — | SKIPPED | 0 | 1 | 0 |
 
-**Overall: NOT READY** — 0/5 pipeline stages implemented. Per CLAUDE.md, nothing ships until /eval passes (all stages at or above threshold).
+**Overall: NOT READY** — 1/5 pipeline stages implemented. Per CLAUDE.md, nothing ships until /eval passes (all stages at or above threshold).
 
 ## Per-Case Results
 
@@ -21,7 +21,7 @@ Test cases evaluated: 1
 
 | Stage | Status | Score | Threshold | Notes |
 |---|---|---|---|---|
-| Layout detection | SKIPPED | — | 98% | module 'pipeline.layout' not implemented yet (No module named 'pipeline.layout') |
+| Layout detection | PASS | 100.0% | 98% | captured |
 | OCR accuracy | SKIPPED | — | 95% | module 'pipeline.ocr' not implemented yet (No module named 'pipeline.ocr') |
 | Dosage parsing | SKIPPED | — | 92% | module 'parser.dosage' not implemented yet (No module named 'parser') |
 | Drug matching | SKIPPED | — | 88% | module 'matcher.drug' not implemented yet (No module named 'matcher') |
