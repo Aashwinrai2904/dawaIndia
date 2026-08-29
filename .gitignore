@@ -251,5 +251,9 @@ logs/
 !/database/*.example.json
 
 # Testing
+# Real prescription photos are excluded (size + patient privacy); labels
+# and the synthetic placeholder fixture used by eval.py are tracked.
 /eval/test_cases/*
 !/eval/test_cases/.gitkeep
+!/eval/test_cases/*.json
+!/eval/test_cases/IMG_001.jpg

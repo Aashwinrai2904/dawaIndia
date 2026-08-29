@@ -1,0 +1,32 @@
+{
+  "image_id": "IMG_001",
+  "image_path": "test_cases/IMG_001.jpg",
+  "doctor_name": "Dr. S. Chakravorty",
+  "patient_name": "Mr. Siddharth",
+  "patient_age": 23,
+  "date": "2023-04-21",
+  "ground_truth_medicines": [
+    {
+      "medicine_number": 1,
+      "brand_name": "Calpol",
+      "generic_name": "Paracetamol",
+      "strength": "650mg",
+      "dosage": "1 tablet",
+      "frequency": "SOS (as needed)",
+      "condition": "fever >100°F",
+      "duration": "as needed",
+      "confidence_target": "high"
+    },
+    {
+      "medicine_number": 2,
+      "brand_name": "Acilide",
+      "generic_name": "Acilid",
+      "strength": "500mg",
+      "dosage": "1 tablet",
+      "frequency": "OD (once daily)",
+      "condition": "morning",
+      "duration": "5 days",
+      "confidence_target": "high"
+    }
+  ]
+}
