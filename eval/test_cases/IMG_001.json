@@ -1,10 +1,14 @@
 {
   "image_id": "IMG_001",
   "image_path": "test_cases/IMG_001.jpg",
+  "source": "real prescription photo, patient name / doctor phone / email / signature redacted before commit (patient privacy)",
   "doctor_name": "Dr. S. Chakravorty",
-  "patient_name": "Mr. Siddharth",
+  "patient_name": "REDACTED",
   "patient_age": 23,
   "date": "2023-04-21",
+  "chief_complaint": "Fever, cough with expectoration",
+  "examination_note": "Afebrile",
+  "transcription_note": "Handwritten prescription, transcribed by a human/AI reader, not verified against a drug database (master_drugs.json doesn't exist yet - Phase 5). Per CLAUDE.md 'abstain on uncertainty': entries below have generic_name filled in only where the brand is confidently recognized; otherwise generic_name is 'UNVERIFIED' and confidence_target is 'low' so Match-stage scoring (Phase 5+) doesn't silently grade against a guessed generic. brand_name/strength/dosage/frequency/duration are transcribed as literally as the handwriting allows.",
   "ground_truth_medicines": [
     {
       "medicine_number": 1,
@@ -19,14 +23,62 @@
     },
     {
       "medicine_number": 2,
-      "brand_name": "Acilide",
-      "generic_name": "Acilid",
+      "brand_name": "Azilide",
+      "generic_name": "Azithromycin",
       "strength": "500mg",
       "dosage": "1 tablet",
       "frequency": "OD (once daily)",
-      "condition": "morning",
+      "condition": "",
       "duration": "5 days",
       "confidence_target": "high"
+    },
+    {
+      "medicine_number": 3,
+      "brand_name": "Hicet-Ax",
+      "generic_name": "UNVERIFIED",
+      "strength": "",
+      "dosage": "1 tablet",
+      "frequency": "BD (twice daily)",
+      "condition": "",
+      "duration": "5 days",
+      "confidence_target": "low",
+      "note": "Brand composition not confidently identified from general knowledge; do not use for Match-stage scoring until verified against a real drug database."
+    },
+    {
+      "medicine_number": 4,
+      "brand_name": "Planokuf",
+      "generic_name": "UNVERIFIED",
+      "strength": "",
+      "dosage": "2 teaspoonful (2TSF)",
+      "frequency": "TDS (three times daily)",
+      "condition": "",
+      "duration": "",
+      "confidence_target": "low",
+      "note": "Brand name spelling uncertain (handwriting could also read 'Planokuy' or similar); composition not confidently identified."
+    },
+    {
+      "medicine_number": 5,
+      "brand_name": "Nexpro-RD",
+      "generic_name": "Rabeprazole + Domperidone",
+      "strength": "",
+      "dosage": "1 capsule",
+      "frequency": "OD (once daily), before breakfast",
+      "condition": "",
+      "duration": "5 days",
+      "confidence_target": "medium",
+      "note": "Brand strongly recognized (well-known Indian combination brand), but the '40' written after the brand name and the exact strength split aren't confidently parsed from the handwriting."
+    },
+    {
+      "medicine_number": 6,
+      "brand_name": "Senzicool",
+      "generic_name": "UNVERIFIED",
+      "strength": "",
+      "dosage": "lozenges",
+      "frequency": "as advised",
+      "condition": "",
+      "duration": "as advised",
+      "confidence_target": "low",
+      "note": "Composition not confidently identified from general knowledge."
     }
   ]
 }

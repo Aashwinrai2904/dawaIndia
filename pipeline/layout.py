@@ -2,8 +2,19 @@
 """dawaIndia pipeline — Stage 1: Layout detection.
 
 Finds the prescription paper's boundary inside a photographed image and
-crops to it. Classic document-scanner CV, no model download: grayscale ->
-blur -> Canny edges -> largest external contour -> bounding rect (+margin).
+crops to it. Classic document-scanner CV, no model download. Two detection
+strategies are tried in order, then a bounding rect is taken (+margin):
+
+  1. Brightness threshold (Otsu) + morphological close. Paper is reliably
+     brighter than what it's photographed on (table, tiled floor, hand) --
+     this is the primary strategy. Verified against real photographed
+     prescriptions (see git history): pure Canny edge detection often
+     fails on these, because handwriting, paper creases and shadows create
+     enough internal edge clutter that the largest external contour ends
+     up thin and snake-like (huge bounding box, ~1% actual fill) rather
+     than the solid paper boundary.
+  2. Canny edge detection, as a fallback for the cases where brightness
+     doesn't separate paper from background (e.g. paper on a pale surface).
 
 Public contract (must match eval.py's STAGE CONTRACTS docstring exactly,
 since eval.py imports and calls this directly):
@@ -79,11 +90,27 @@ def detect_prescription_box(image_path: str) -> dict:
 def _find_paper_bbox(image, img_w, img_h):
     """Return (x, y, w, h, extent) for the paper boundary, or None if not confident."""
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    for mask in (_threshold_mask(gray), _edge_mask(gray)):
+        bbox = _best_contour_bbox(mask, img_w, img_h)
+        if bbox is not None:
+            return bbox
+    return None
+
+
+def _threshold_mask(gray):
+    blurred = cv2.GaussianBlur(gray, (7, 7), 0)
+    _, mask = cv2.threshold(blurred, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    return cv2.morphologyEx(mask, cv2.MORPH_CLOSE, np.ones((15, 15), np.uint8), iterations=2)
+
+
+def _edge_mask(gray):
     blurred = cv2.GaussianBlur(gray, (5, 5), 0)
     edges = cv2.Canny(blurred, 50, 150)
-    edges = cv2.dilate(edges, np.ones((5, 5), np.uint8), iterations=2)
+    return cv2.dilate(edges, np.ones((5, 5), np.uint8), iterations=2)
 
-    contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+def _best_contour_bbox(binary_mask, img_w, img_h):
+    contours, _ = cv2.findContours(binary_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     if not contours:
         return None
 
@@ -92,8 +119,12 @@ def _find_paper_bbox(image, img_w, img_h):
     if w == 0 or h == 0:
         return None
 
+    # Convex hull area (not raw contour area) so a thin, wiggly contour --
+    # paper edges broken up by creases/handwriting/shadow -- doesn't read as
+    # "0% filled" when it's actually tracing close to the real boundary.
+    hull_area = cv2.contourArea(cv2.convexHull(largest))
     area_ratio = (w * h) / (img_w * img_h)
-    extent = cv2.contourArea(largest) / (w * h)
+    extent = hull_area / (w * h)
     if area_ratio < MIN_AREA_RATIO or extent < MIN_EXTENT:
         return None
 

@@ -1,0 +1,50 @@
+{
+  "image_id": "IMG_002",
+  "image_path": "test_cases/IMG_002.jpg",
+  "source": "real prescription photo, doctor signature redacted before commit (patient privacy)",
+  "doctor_name": "Dr. S. Chakravorty",
+  "patient_name": "REDACTED",
+  "patient_age": null,
+  "date": "2023-04-27",
+  "chief_complaint": "",
+  "examination_note": "",
+  "transcription_note": "Likely the review visit for the same patient as IMG_001 (dated exactly 1 week after IMG_001's 'Review after 1wk' note, same doctor's initials on the signature), but this photo has no letterhead/patient-name line of its own, so that link isn't confirmed - treat image_id linkage as unverified. A short side-note next to the Rx block, transcribed here as best-effort, was largely illegible and is omitted rather than guessed. Same abstain-on-uncertainty labeling policy as IMG_001: generic_name is 'UNVERIFIED' unless the brand is confidently recognized.",
+  "ground_truth_medicines": [
+    {
+      "medicine_number": 1,
+      "brand_name": "Grandcef-CV (325)",
+      "generic_name": "UNVERIFIED",
+      "strength": "325",
+      "dosage": "1 tablet",
+      "frequency": "BD (twice daily)",
+      "condition": "",
+      "duration": "5 days",
+      "confidence_target": "low",
+      "note": "'-CV' suffix is a common Indian naming convention for a Cefixime + Clavulanic Acid combination, but that's a guess from the brand name pattern, not a confirmed lookup - not asserted as generic_name. Part of the duration notation appears crossed out/rewritten on the original; '5 days' is the best-effort read of what's left."
+    },
+    {
+      "medicine_number": 2,
+      "brand_name": "Hicet-DC",
+      "generic_name": "UNVERIFIED",
+      "strength": "",
+      "dosage": "1 tablet",
+      "frequency": "OD (once daily)",
+      "condition": "",
+      "duration": "5 days",
+      "confidence_target": "low",
+      "note": "Different suffix from IMG_001's 'Hicet-Ax' - a distinct product in the same brand family; composition not confidently identified."
+    },
+    {
+      "medicine_number": 3,
+      "brand_name": "Aquilinctus",
+      "generic_name": "UNVERIFIED",
+      "strength": "",
+      "dosage": "2 teaspoonful (2TSF)",
+      "frequency": "TDS (three times daily)",
+      "condition": "",
+      "duration": "",
+      "confidence_target": "low",
+      "note": "Brand name spelling uncertain; composition not confidently identified."
+    }
+  ]
+}

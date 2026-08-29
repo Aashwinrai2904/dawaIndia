@@ -53,12 +53,28 @@ Label schema:
 `"low"` (<50%) — it's what the confidence-scoring stage is expected to land
 in for that medicine.
 
-`IMG_001.jpg` currently checked in is a 1x1 synthetic placeholder, not a real
-prescription — it exists so the harness is runnable end-to-end before any
-real labeled photos are collected. Real prescription photos are **not**
-committed (see `.gitignore`) due to size and patient privacy; store them
-locally or in a private data store, and point `image_path` at wherever you
-keep them.
+`IMG_001.jpg` and `IMG_002.jpg` are real photographed prescriptions (from
+the same clinic, one week apart). Real prescription photos are **not**
+committed by default (see `.gitignore`) due to size and patient privacy —
+each committed image is an explicit allowlist entry, and must be redacted
+first:
+
+1. Black out the patient's name, any phone numbers/emails, and any
+   signatures before saving the image into `eval/test_cases/`.
+2. Add `!/eval/test_cases/<filename>.jpg` to `.gitignore` for that specific
+   file (deny-by-default: an unlisted image never gets committed even by
+   accident).
+3. In the label JSON, set `"patient_name": "REDACTED"` and don't put a real
+   name anywhere else in the file either.
+4. Only transcribe `generic_name` when the brand is confidently recognized;
+   otherwise use `"UNVERIFIED"` with `"confidence_target": "low"` and a
+   `"note"` explaining why. Don't invent a plausible-looking generic name —
+   an incorrect one silently corrupts Match-stage (Phase 5) scoring later,
+   and CLAUDE.md's "abstain on uncertainty" applies to labeling the data,
+   not just to the pipeline that reads it.
+
+For images that don't need this (synthetic/placeholder fixtures with no
+real patient involved), skip straight to step 2.
 
 ## Known limitations (see also `accuracy_report.md`)
 
