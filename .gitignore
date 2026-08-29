@@ -216,3 +216,40 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ── dawaIndia project-specific ──
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Node
+node_modules/
+.next/
+out/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+
+# Debug
+/pipeline/debug_crops/*
+!/pipeline/debug_crops/.gitkeep
+
+# Data (large files)
+/database/*.json
+!/database/*.example.json
+
+# Testing
+/eval/test_cases/*
+!/eval/test_cases/.gitkeep
