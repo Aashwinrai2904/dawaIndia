@@ -1,6 +1,6 @@
 # dawaIndia — Accuracy Report
 
-Generated: 2026-08-29 18:15:23 UTC
+Generated: 2026-08-29 19:51:18 UTC
 Test cases evaluated: 2
 
 ## Summary
@@ -24,7 +24,7 @@ Test cases evaluated: 2
 | Layout detection | PASS | 100.0% | 98% | captured |
 | OCR accuracy | FAIL | 0.0% | 95% | 0/6 brand names recognized in OCR text (proxy) |
 | Dosage parsing | SKIPPED | — | 92% | module 'parser.dosage' not implemented yet (No module named 'parser') |
-| Drug matching | SKIPPED | — | 88% | module 'matcher.drug' not implemented yet (No module named 'matcher') |
+| Drug matching | SKIPPED | — | 88% | module 'matcher.drug' not implemented yet (No module named 'matcher.drug'; 'matcher' is not a package) |
 | Confidence scoring | SKIPPED | — | 90% | module 'confidence.scorer' not implemented yet (No module named 'confidence') |
 
 ### IMG_002
@@ -34,7 +34,7 @@ Test cases evaluated: 2
 | Layout detection | PASS | 100.0% | 98% | captured |
 | OCR accuracy | FAIL | 0.0% | 95% | 0/3 brand names recognized in OCR text (proxy) |
 | Dosage parsing | SKIPPED | — | 92% | module 'parser.dosage' not implemented yet (No module named 'parser') |
-| Drug matching | SKIPPED | — | 88% | module 'matcher.drug' not implemented yet (No module named 'matcher') |
+| Drug matching | SKIPPED | — | 88% | module 'matcher.drug' not implemented yet (No module named 'matcher.drug'; 'matcher' is not a package) |
 | Confidence scoring | SKIPPED | — | 90% | module 'confidence.scorer' not implemented yet (No module named 'confidence') |
 
 ## Failed Cases
