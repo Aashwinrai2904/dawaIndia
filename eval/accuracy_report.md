@@ -1,6 +1,6 @@
 # dawaIndia — Accuracy Report
 
-Generated: 2026-08-29 19:51:18 UTC
+Generated: 2026-08-30 00:19:29 UTC
 Test cases evaluated: 2
 
 ## Summary
@@ -9,7 +9,7 @@ Test cases evaluated: 2
 |---|---|---|---|---|---|---|
 | Layout detection | 98% | 100.0% | PASS | 2 | 0 | 0 |
 | OCR accuracy | 95% | 0.0% | FAIL | 2 | 0 | 0 |
-| Dosage parsing | 92% | — | SKIPPED | 0 | 2 | 0 |
+| Dosage parsing | 92% | 0.0% | FAIL | 2 | 0 | 0 |
 | Drug matching | 88% | — | SKIPPED | 0 | 2 | 0 |
 | Confidence scoring | 90% | — | SKIPPED | 0 | 2 | 0 |
 
@@ -23,7 +23,7 @@ Test cases evaluated: 2
 |---|---|---|---|---|
 | Layout detection | PASS | 100.0% | 98% | captured |
 | OCR accuracy | FAIL | 0.0% | 95% | 0/6 brand names recognized in OCR text (proxy) |
-| Dosage parsing | SKIPPED | — | 92% | module 'parser.dosage' not implemented yet (No module named 'parser') |
+| Dosage parsing | FAIL | 0.0% | 92% | avg field accuracy across 6 medicine(s) |
 | Drug matching | SKIPPED | — | 88% | module 'matcher.drug' not implemented yet (No module named 'matcher.drug'; 'matcher' is not a package) |
 | Confidence scoring | SKIPPED | — | 90% | module 'confidence.scorer' not implemented yet (No module named 'confidence') |
 
@@ -33,7 +33,7 @@ Test cases evaluated: 2
 |---|---|---|---|---|
 | Layout detection | PASS | 100.0% | 98% | captured |
 | OCR accuracy | FAIL | 0.0% | 95% | 0/3 brand names recognized in OCR text (proxy) |
-| Dosage parsing | SKIPPED | — | 92% | module 'parser.dosage' not implemented yet (No module named 'parser') |
+| Dosage parsing | FAIL | 0.0% | 92% | avg field accuracy across 3 medicine(s) |
 | Drug matching | SKIPPED | — | 88% | module 'matcher.drug' not implemented yet (No module named 'matcher.drug'; 'matcher' is not a package) |
 | Confidence scoring | SKIPPED | — | 90% | module 'confidence.scorer' not implemented yet (No module named 'confidence') |
 
@@ -41,9 +41,11 @@ Test cases evaluated: 2
 
 ### IMG_001
 - **OCR accuracy**: 0.0% (below 95% threshold) — [{"brand_name": "Calpol", "found_in_ocr_text": false}, {"brand_name": "Azilide", "found_in_ocr_text": false}, {"brand_name": "Hicet-Ax", "found_in_ocr_text": false}, {"brand_name": "Planokuf", "found_in_ocr_text": false}, {"brand_name": "Nexpro-RD", "found_in_ocr_text": false}, {"brand_name": "Senzicool", "found_in_ocr_text": false}]
+- **Dosage parsing**: 0.0% (below 92% threshold) — [{"brand_name": "Calpol", "field_accuracy": 0.0, "note": "no matching parsed medicine found"}, {"brand_name": "Azilide", "field_accuracy": 0.0, "note": "no matching parsed medicine found"}, {"brand_name": "Hicet-Ax", "field_accuracy": 0.0, "note": "no matching parsed medicine found"}, {"brand_name": "Planokuf", "field_accuracy": 0.0, "note": "no matching parsed medicine found"}, {"brand_name": "Nexpro-RD", "field_accuracy": 0.0, "note": "no matching parsed medicine found"}, {"brand_name": "Senzicool", "field_accuracy": 0.0, "note": "no matching parsed medicine found"}]
 
 ### IMG_002
 - **OCR accuracy**: 0.0% (below 95% threshold) — [{"brand_name": "Grandcef-CV (325)", "found_in_ocr_text": false}, {"brand_name": "Hicet-DC", "found_in_ocr_text": false}, {"brand_name": "Aquilinctus", "found_in_ocr_text": false}]
+- **Dosage parsing**: 0.0% (below 92% threshold) — [{"brand_name": "Grandcef-CV (325)", "field_accuracy": 0.0, "note": "no matching parsed medicine found"}, {"brand_name": "Hicet-DC", "field_accuracy": 0.0, "note": "no matching parsed medicine found"}, {"brand_name": "Aquilinctus", "field_accuracy": 0.0, "note": "no matching parsed medicine found"}]
 
 ## Known Limitations
 
